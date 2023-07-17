@@ -11,7 +11,8 @@
     <style>
         body{
             background: rgb(2,0,36);
-            background: linear-gradient(21deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 47%, rgba(0,157,189,1) 100%);   
+            background: linear-gradient(21deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 47%, rgba(0,157,189,1) 100%);
+            height:100vh;
         }
         footer{
             position: fixed;
@@ -20,6 +21,9 @@
             width: 100%;
             color: white;
             text-align: center;
+        }
+        .center-timer{
+            height:80vh;
         }
     </style>
 </head>
