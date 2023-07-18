@@ -1,4 +1,4 @@
-</div>
+<!-- </div> -->
 
 <footer class="bg-dark text-white">
     Footer

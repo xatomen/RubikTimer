@@ -52,6 +52,15 @@ function manejarTeclaEspacio(event) {
             clearInterval(intervalo);
             intervalo = null;
             solve_time.printSolve();
+
+            // Agregar el objeto a la tabla
+            agregarObjetoATabla(solve_time);
+
+            if(inicio==1){
+                // d_segundos = 0;
+                inicio=0;
+            }
+
         }
     }
 }
@@ -81,6 +90,29 @@ function manejarTeclaEspacioSoltado(event) {
             actualizarContador();
         }, 10);
     }
+}
+
+// Función para agregar un objeto Solve a la tabla
+function agregarObjetoATabla(solve) {
+    const tabla = document.getElementById('tablaSolve');
+    const cuerpoTabla = tabla.getElementsByTagName('tbody')[0];
+    const fila = document.createElement('tr');
+
+    // Crear celdas para cada propiedad del objeto Solve
+    const celdaSolveTime = document.createElement('td');
+    celdaSolveTime.textContent = solve.solveTime;
+    fila.appendChild(celdaSolveTime);
+
+    const celdaAlgorithm = document.createElement('td');
+    celdaAlgorithm.textContent = solve.algorithm;
+    fila.appendChild(celdaAlgorithm);
+
+    const celdaInspectionTime = document.createElement('td');
+    celdaInspectionTime.textContent = solve.inspectionTime;
+    fila.appendChild(celdaInspectionTime);
+
+    // Agregar la fila a la tabla
+    cuerpoTabla.appendChild(fila);
 }
 
 // Agregar el evento para detectar la tecla espacio
