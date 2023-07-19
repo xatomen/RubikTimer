@@ -8,6 +8,10 @@
             <table class="Geologica text-white" id="">
                 <thead>
                     <tr>
+                        <th>Average:</th>
+                        <th id="avg">-</th>
+                    </tr>
+                    <tr>
                         <th>Average 5:</th>
                         <th id="avg5">-</th>
                     </tr>
@@ -19,7 +23,7 @@
                 <tbody></tbody>
             </table>
         </div>
-        <div class="card transparent border border-white">
+        <div class="card transparent border border-white mb-5">
             <table class="Geologica text-white m-2 p-2" id="tablaSolve">
                 <thead>
                     <tr>
@@ -39,7 +43,6 @@
         <h1 id="contador" class="text-white" style="font-size: 10vw;">00.00</h1>
     </div>
 </div>
-
 
 
 <?php include('./template/footer.php') ?>

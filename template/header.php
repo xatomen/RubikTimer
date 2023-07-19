@@ -22,7 +22,7 @@ $actual_link = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
         body{
             background: rgb(2,0,36);
             background: linear-gradient(0deg, rgba(2,0,36,1) 30%, rgba(12,12,97,1) 78%, rgba(52,1,67,1) 100%);
-            height:100vh;
+            min-height: 100vh;
         }
         footer{
             position: fixed;

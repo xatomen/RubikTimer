@@ -28,6 +28,7 @@ let intervalo;
 let inicio=0;
 let num_solves=0;
 
+let times = [];
 let stack = [];
 
 function formatTimeFromMilliseconds(milliseconds) {
@@ -55,6 +56,54 @@ function actualizarContador() {
     contadorElemento.textContent = formatTimeFromMilliseconds(d_segundos);
 }
 
+function totalAverage(){
+    const avg = document.getElementById('avg');
+    // Hacemos una copia superficial de la pila usando slice()
+    let avgstack = stack.slice();
+    let sum = 0;
+    for (let i = 1; i <= num_solves; i++) {
+        // Accedemos al último elemento de la copia usando pop()
+        const solve = avgstack.pop();
+        sum += solve.solveRawTime;
+    }
+    let avg_total = sum / num_solves; // Calculamos el average of 5 dividiendo la suma entre 5
+    avg.textContent = formatTimeFromMilliseconds(Math.floor(avg_total)); // Mostramos el resultado con 2 decimales
+}
+
+function getMin(){
+    let tempStack = stack.slice();
+    let solve = tempStack.pop();
+    let min = solve.solveRawTime;
+    console.log("min: ",min);
+    for (let i = 1; i < 5; i++) {
+        // Accedemos al último elemento de la copia usando pop()
+        let solve = tempStack.pop();
+        // let min = solve.solveRawTime;
+        if(solve.solveRawTime<min){
+            min = solve.solveRawTime;
+        }
+    }
+    console.log(min);
+    return min;
+}
+
+function getMax(){
+    let tempStack = stack.slice();
+    let solve = tempStack.pop();
+    let max = solve.solveRawTime;
+    for (let i = 1; i < 5; i++) {
+        // Accedemos al último elemento de la copia usando pop()
+        let solve = tempStack.pop();
+        // let max = solve.solveRawTime;
+
+        if(solve.solveRawTime>max){
+            max = solve.solveRawTime;
+        }
+    }
+    console.log(max);
+    return max;
+}
+
 function Average5() {
     const avg5 = document.getElementById('avg5');
     // Hacemos una copia superficial de la pila usando slice()
@@ -65,8 +114,11 @@ function Average5() {
         const solve = ao5stack.pop();
         sum += solve.solveRawTime;
     }
-    let ao5 = sum / 5; // Calculamos el average of 5 dividiendo la suma entre 5
-    avg5.textContent = formatTimeFromMilliseconds(ao5.toFixed(2)); // Mostramos el resultado con 2 decimales
+    sum -= getMin();
+    sum -= getMax();
+    console.log(sum/3);
+    let ao5 = sum / 3; // Calculamos el average of 5 dividiendo la suma entre 5
+    avg5.textContent = formatTimeFromMilliseconds(Math.floor(ao5)); // Mostramos el resultado con 2 decimales
 }
 
 function Average12(){
@@ -78,8 +130,10 @@ function Average12(){
         const solve = ao12stack.pop();
         sum += solve.solveRawTime;
     }
-    let ao12 = sum / 12; // Calculamos el average of 5 dividiendo la suma entre 5
-    avg12.textContent = formatTimeFromMilliseconds(ao12.toFixed(2)); // Mostramos el resultado con 2 decimales
+    sum -= getMin();
+    sum -= getMax();
+    let ao12 = sum / 10; // Calculamos el average of 5 dividiendo la suma entre 5
+    avg12.textContent = formatTimeFromMilliseconds(Math.floor(ao12)); // Mostramos el resultado con 2 decimales
 }
 
 // Función para iniciar o detener el contador al presionar la tecla espacio
@@ -99,6 +153,10 @@ function manejarTeclaEspacio(event) {
 
             // Agregar el objeto a la tabla
             agregarObjetoATabla(solve_time);
+
+            //Calculamos average total
+            totalAverage();
+
             //Calculamos average of 5
             if(num_solves==5){
                 Average5();
