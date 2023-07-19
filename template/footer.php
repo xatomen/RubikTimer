@@ -1,7 +1,7 @@
-<!-- </div> -->
+</div>
 
-<footer class="bg-dark text-white">
-    Footer
+<footer class="bg-black text-white">
+    Developed by Jorge Gallardo 2023
 </footer>
 </body>
 
