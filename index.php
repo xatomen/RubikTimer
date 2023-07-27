@@ -5,7 +5,7 @@
 <div class="position-relative center-timer">
     <div class="position-absolute start-0 top-0">
         <div class="card transparent border border-white mb-2">
-            <table class="Geologica text-white" id="">
+            <table class="Geologica text-white m-2 p-2" id="">
                 <thead>
                     <tr>
                         <th>Average:</th>

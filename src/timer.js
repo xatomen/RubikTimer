@@ -141,6 +141,11 @@ function manejarTeclaEspacio(event) {
     // Si ya hay un intervalo activo, detener el contador
     if (event.code === 'Space' && inicio==1) {
         if (intervalo) {
+
+            // const classBody = document.getElementById('body');
+            // classBody.className -= "backgroundBlack";
+            // classBody.className += "header finisher-header"
+
             let solve_time = new Solve();
             solve_time.setRawTime(d_segundos);
             solve_time.setTime(formatTimeFromMilliseconds(d_segundos));
@@ -171,6 +176,7 @@ function manejarTeclaEspacio(event) {
 
 function manejarTeclaEspacioPresionado(event) {
     console.log("Presionado");
+
     const contadorElemento = document.getElementById('contador');
     contadorElemento.className -= " text-white";
     contadorElemento.className += " text-danger";
@@ -188,9 +194,16 @@ function manejarTeclaEspacioPresionado(event) {
 
 function manejarTeclaEspacioSoltado(event) {
     console.log("Soltado");
+    // const classBody = document.getElementById('body');
+    // classBody.className -= " header finisher-header";
+    document.body.classList.remove('header');
+    document.body.classList.replace('finisher-header','backgroundBlack');
+    window.dispatchEvent(new Event('resize'));
+    // document.body.classList.add('backgroundBlack');
+
     const contadorElemento = document.getElementById('contador');
-        contadorElemento.className -= " text-danger";
-        contadorElemento.className += " text-white";
+    contadorElemento.className -= " text-danger";
+    contadorElemento.className += " text-white";
     if(inicio==1){
         if (event.code === 'Space') {
             inicio = 0;
